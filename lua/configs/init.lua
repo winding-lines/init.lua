@@ -1,6 +1,6 @@
-require("theprimeagen.set")
-require("theprimeagen.remap")
-require("theprimeagen.lazy_init")
+require("configs.set")
+require("configs.remap")
+require("configs.lazy_init")
 
 -- DO.not
 -- DO NOT INCLUDE THIS

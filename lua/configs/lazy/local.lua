@@ -1,5 +1,6 @@
 
 local local_plugins = {
+--[=[
     {
         "cockpit",
         dir = "~/personal/cockpit",
@@ -62,6 +63,7 @@ local local_plugins = {
         "vim-with-me", dir = "~/personal/vim-with-me",
         config = function() end
     },
+    -- ]=]
 }
 
 return local_plugins
