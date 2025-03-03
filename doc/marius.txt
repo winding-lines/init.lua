@@ -1,0 +1,5 @@
+*marius.txt*
+
+1. Tmux keys
+
+<C-space> tmux leader key
