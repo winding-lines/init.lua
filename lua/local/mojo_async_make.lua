@@ -10,9 +10,31 @@ historian.setup()
 
 local M = {}
 
+-- Python error format.
+-- Use each file and line of Tracebacks (to see and step through the code executing)
+local python_errorformat = '%A%\\s%#File "%f"\\, line %l\\, in%.%#'
+
+-- Include failed toplevel doctest example
+python_errorformat = python_errorformat .. ",%+CFailed example:%.%#"
+
+-- Ignore big star lines from doctests
+python_errorformat = python_errorformat .. ",%-G*%\\{70%\\}"
+
+-- Ignore most of doctest summary
+python_errorformat = python_errorformat .. ",%-G%*\\d items had failures:"
+python_errorformat = python_errorformat .. ",%-G%*\\s%*\\d of%*\\s%*\\d in%.%#"
+
+-- SyntaxErrors (%p is for the pointer to the error column)
+python_errorformat = python_errorformat .. ',%E  File "%f"\\, line %l'
+
+-- %p must come before other lines that might match leading whitespace
+python_errorformat = python_errorformat .. ",%-C%p^"
+python_errorformat = python_errorformat .. ",%+C  %m"
+python_errorformat = python_errorformat .. ",%Z  %m"
+
 -- Error format courtesy of Claude.
--- vim.api.nvim_get_option_value("errorformat", { buf = bufnr }),
-M.errorformat = "%f:%l:%c: %t%*[^:]: %m,%Z%*[^ ]^,%+IIncluded from %f:%l:"
+local mojo_errorformat = "%f:%l:%c: %t%*[^:]: %m,%Z%*[^ ]^,%+IIncluded from %f:%l:"
+M.errorformat = mojo_errorformat .. "," .. python_errorformat
 
 local function update_qlist(lines, bufnr, cmd, operation)
   vim.fn.setqflist({}, operation, {
