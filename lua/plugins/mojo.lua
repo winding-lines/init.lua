@@ -1,5 +1,5 @@
 -- Load the LSP.
-require("lspconfig").mojo.setup({})
+require("lspconfig").mojo.setup({ cmd = "mojo-lsp-server -I." })
 
 -- Load the async make.
 require("local/mojo_async_make").setup()
