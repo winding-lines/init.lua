@@ -27,6 +27,8 @@ python_errorformat = python_errorformat .. ",%Z  %m"
 M.python = python_errorformat
 
 -- Mojo error format courtesy of Claude.
-M.mojo = "%f:%l:%c: %t%*[^:]: %m,%Z%*[^ ]^,%+IIncluded from %f:%l:"
+M.mojo = "%f:%l:%c: %t%*[^:]: %m,%Z%*[^ ]^"
+-- Generally less useful to parse the includes
+-- M.mojo = M.mojo .. ",%+IIncluded from %f:%l:"
 
 return M
