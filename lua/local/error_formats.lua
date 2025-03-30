@@ -28,6 +28,8 @@ M.python = python_errorformat
 
 -- Mojo error format courtesy of Claude.
 M.mojo = "%f:%l:%c: %t%*[^:]: %m,%Z%*[^ ]^"
+-- parse failed tests
+M.mojo = M.mojo .. ",%EUnhandled exception caught during execution: At %f:%l:%c: %m"
 -- Generally less useful to parse the includes
 -- M.mojo = M.mojo .. ",%+IIncluded from %f:%l:"
 
