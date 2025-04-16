@@ -2,23 +2,32 @@ local M = {}
 
 M.setup = function()
   local dap = require("dap")
-  dap.adapters["mojo"] = {
-    type = "executable",
-    command = "mojo",
-    args = { "test", "--vscode", "--stop-on-entry", "-I", "." },
-    name = "mojo",
-  }
 
-  local mojo = {
-    name = "Launch mojo test",
-    type = "mojo", -- matches the adapter
-    request = "launch", -- could also attach to a currently running process
-    program = "${file}",
-    cwd = "${workspaceFolder}",
+  -- debug communication problems
+  dap.set_log_level("TRACE")
+
+  dap.adapters["mojo_run"] = {
+    type = "server",
+    port = "${port}",
+    executable = {
+      command = "mojo",
+      args = { "debug", "--vscode", "--port", "${port}", "read_cats_and_dogs.mojo" },
+    },
+    name = "mojo_run",
+    options = {
+      initialize_timeout_sec = 20,
+      detached = false,
+    },
   }
 
   dap.configurations.mojo = {
-    mojo,
+    {
+      name = "Launch mojo file",
+      type = "mojo_run", -- matches the adapter
+      request = "launch", -- could also attach to a currently running process
+      program = "${file}",
+      cwd = "${workspaceFolder}",
+    },
   }
 end
 
