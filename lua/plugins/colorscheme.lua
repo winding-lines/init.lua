@@ -1,6 +1,7 @@
 return {
   {
-    "scottmckendry/cyberdream.nvim",
+    -- "scottmckendry/cyberdream.nvim",
+    "sainnhe/gruvbox-material",
     lazy = false,
     priority = 1000,
   },
@@ -9,7 +10,8 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "cyberdream",
+      -- colorscheme = "cyberdream",
+      colorscheme = "gruvbox-material",
     },
   },
 }
