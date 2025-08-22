@@ -9,4 +9,20 @@ require("local/mojo_debug").setup()
 --Keybings for async make.
 vim.keymap.set("n", "<leader>m", "<cmd>MojoMake<cr>", { desc = "Mojo Make" })
 
-return {}
+-- setup formatting
+return {
+  "stevearc/conform.nvim",
+  optional = true,
+  opts = {
+    formatters_by_ft = {
+      mojo = { "mojo" },
+    },
+    formatters = {
+      mojo = {
+        command = "mojo",
+        args = { "format", "-" },
+        stdin = true,
+      },
+    },
+  },
+}
