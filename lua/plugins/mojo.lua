@@ -16,12 +16,17 @@ return {
   opts = {
     formatters_by_ft = {
       mojo = { "mojo" },
+      starlark = { "bazel" },
     },
     formatters = {
       mojo = {
         command = "mojo",
         args = { "format", "-" },
         stdin = true,
+      },
+      starlark = {
+        command = "buildifier",
+        stdin = false,
       },
     },
   },
