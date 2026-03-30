@@ -4,3 +4,6 @@
 
 vim.keymap.set("i", "kj", "<Esc>")
 vim.keymap.set("t", "kj", "<C-\\><C-n>")
+
+vim.keymap.set("n", "<C-'>", 'i"""."""<Esc>hhh')
+vim.keymap.set("i", "<C-'>", '"""."""<Esc>hhhi')
